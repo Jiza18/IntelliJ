@@ -60,6 +60,7 @@ public class Main {
         int fila = 0;
         int columna = 0;
 
+
         boolean comprueba = compruebabarco(t,fila,columna);
 
         if(comprueba == true){
@@ -86,21 +87,26 @@ public class Main {
 
         boolean comprueba = false;
 
-        do{
+        int fila;
+        int columna;
 
-            if(ta[a][b] == '-'){
-                if(ta[a][b] < ta.length){
+        do{
+            fila = fila();
+            columna = columna();
+
+            if(ta[fila][columna] == '-'){
+                if(ta[fila][columna] < ta.length){
                     comprueba = true;
+                    System.out.println("True");
                 }
             }
             else{
-                a = fila();
-                b = columna();
+               System.out.println("False");
             }
 
         }
 
-        while(comprueba =! true);
+        while(comprueba == false);
 
         return comprueba;
     }
