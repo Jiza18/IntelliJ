@@ -13,7 +13,7 @@ public class Main {
         for (int i = 0; i < 10; i++) {
 
             for (int j = 0; j < 10; j++) {
-                tablero[i][j] = '_';
+                tablero[i][j] = '-';
             }
 
         }
@@ -64,6 +64,7 @@ public class Main {
         boolean comprueba = compruebabarco(t,fila,columna);
 
         if(comprueba == true){
+            System.out.println("si");
             for(int i = 0; i < 3; i++){
                 t[fila+i][columna+i] = 'B';
             }
@@ -90,7 +91,7 @@ public class Main {
         int fila;
         int columna;
 
-        do{
+        while(comprueba =! true){
             fila = fila();
             columna = columna();
 
@@ -101,12 +102,10 @@ public class Main {
                 }
             }
             else{
-               System.out.println("False");
+                System.out.println("False");
             }
 
         }
-
-        while(comprueba == false);
 
         return comprueba;
     }
@@ -187,7 +186,7 @@ public class Main {
 
         char taule[][] = tableroIA();
 
-        lancha(taule);
+        //lancha(taule);
 
         int intentos = 10;
 
