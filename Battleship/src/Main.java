@@ -7,7 +7,6 @@ public class Main {
     public static char[][]
     tableroIA() {
 
-        char indicechar = 'A';
 
         char[][] tablero = new char[10][10];
         for (int i = 0; i < 10; i++) {
@@ -18,28 +17,23 @@ public class Main {
 
         }
 
-        char p = 'P';
-        char z = 'Z';
-
 
         return tablero;
     }
 
     public static int fila(){
 
-        int fila = (int) (Math.random() * 10);
-        return fila;
+        return (int) (Math.random() * 10);
 
     }
 
     public static int columna(){
 
-        int columna = (int) (Math.random() * 10);
-        return columna;
+        return (int) (Math.random() * 10);
 
     }
 
-    public static void lancha(char t[][]){
+    public static void lancha(char[][] t){
 
         int lanchas = 5;
         char l = 'L';
@@ -63,55 +57,47 @@ public class Main {
 
         boolean comprueba = compruebabarco(t,fila,columna);
 
-        if(comprueba == true){
+        if(comprueba){
             System.out.println("si");
             for(int i = 0; i < 3; i++){
-                t[fila+i][columna+i] = 'B';
+                t[fila][columna+i] = 'B';
             }
+
         }
 
     }
 
-    public static boolean compruebalancha(char ta[][], int a, int b){
+
+    public static boolean compruebabarco(char[][] ta, int a, int b){
 
         boolean comprueba = false;
 
+        do {
+            a = fila();
+            b = columna();
 
-        if(ta[a][b] == '-') {
-            comprueba = true;
+            //for(int i = 0; i < 3; i++){
+                //if(ta[a+i][b] < ta.length){
+                    for(int x = 0; a < 3; a++){
+                        if(ta[a+x][b] == '-'){
+                            comprueba = true;
+                            System.out.println("TRUE");
+                            ta[a+x][b] = 'A';
+                        }
+                        else{
+                            System.out.println("FALSE");
+                        }
+                    }
+                //}
+            //}
         }
-
-        return comprueba;
-    }
-
-    public static boolean compruebabarco(char ta[][], int a, int b){
-
-        boolean comprueba = false;
-
-        int fila;
-        int columna;
-
-        while(comprueba =! true){
-            fila = fila();
-            columna = columna();
-
-            if(ta[fila][columna] == '-'){
-                if(ta[fila][columna] < ta.length){
-                    comprueba = true;
-                    System.out.println("True");
-                }
-            }
-            else{
-                System.out.println("False");
-            }
-
-        }
+        while(!comprueba);
 
         return comprueba;
     }
 
 
-    public static void disparo(char t[][], int intentos) {
+    public static void disparo(char[][] t, int intentos) {
 
         Scanner entrada = new Scanner(System.in);
 
@@ -129,6 +115,8 @@ public class Main {
             int columna = entrada.nextInt();
 
             t[fila][columna] = '*';
+
+            contador++;
 
             mostrar(t);
         }
@@ -148,13 +136,10 @@ public class Main {
         System.out.println("3.Dificil");
         System.out.println("4.Personalizado");
 
-        int opcion = entrada.nextInt();
-
-        return opcion;
+        return entrada.nextInt();
 
     }
-
-    public static void mostrar(char tablero[][]) {
+    public static void mostrar(char[][] tablero) {
 
         char indicechar = 'A';
 
@@ -182,17 +167,23 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Scanner entrada = new Scanner(System.in);
+        char[][] taule = tableroIA();
 
-        char taule[][] = tableroIA();
+        int fila = 0;
+        int columna = 0;
 
-        //lancha(taule);
-
-        int intentos = 10;
+        /*lancha(taule);
 
         mostrar(taule);
 
         barco(taule);
+
+        mostrar(taule);*/
+
+        //mostrar(taule);
+
+
+        compruebabarco(taule,fila,columna);
 
         mostrar(taule);
 
