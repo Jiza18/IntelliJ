@@ -70,7 +70,7 @@ public class Main {
     }
 
 
-    public static boolean compruebabarco(char[][] ta, int a, int b){
+    public static boolean compruebabarco(char[][] ta, int a, int b){ //NO ME SALE
 
         boolean comprueba = false;
         int contador = 0;
