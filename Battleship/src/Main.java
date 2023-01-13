@@ -70,7 +70,7 @@ public class Main {
     }
 
 
-    public static boolean compruebabarco(char[][] ta, int a, int b){ //NO ME SALE
+    public static boolean compruebabarco(char[][] ta, int a, int b){
 
         boolean comprueba = false;
         int contador = 0;
@@ -79,8 +79,8 @@ public class Main {
             a = fila();
             b = columna();
 
-            //for(int i = 0; i < 3; i++){
-                //if(ta[a+i][b] < ta.length){
+            for(int i = 0; i < 3; i++){
+                if(ta[a][b+i] < ta.length){
                     for(int x = 0; a < 3; a++){
                         if(ta[a+x][b] == '-'){
                             contador++;
@@ -89,8 +89,11 @@ public class Main {
                     if(contador == 3){
                         comprueba = true;
                     }
-                //}
-            //}
+                }
+                else{
+                    break;
+                }
+            }
         }
         while(!comprueba);
 
