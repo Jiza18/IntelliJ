@@ -35,15 +35,12 @@ public class Main {
 
     public static void lancha(char[][] t){
 
-        int lanchas = 5;
-        char l = 'L';
-
-        for(int i = 0; i < lanchas; i++){
+        for(int i = 0; i < 5; i++){
 
             int fila = fila();
             int columna = columna();
 
-            t[fila][columna] = l;
+            t[fila][columna] = 'L';
 
         }
 
@@ -51,26 +48,32 @@ public class Main {
 
     public static void barco(char[][] t) {
 
-        int fila = 0;
-        int columna = 0;
+        boolean comprueba = false;
+        int cont = 0;
 
+        for(int x = 0; x < 3; x++){
+            do{
+                int fila = fila();
+                int columna = columna();
 
-        boolean comprueba = compruebabarco(t,fila,columna);
+                comprueba = compruebabarco(t,fila,columna);
 
-        if(comprueba){
-            System.out.println("si");
-            for(int i = 0; i < 3; i++){
-                t[fila][columna+i] = 'B';
+                if(comprueba){
+                    for(int i = 0; i < 3; i++){
+                        t[fila][columna+i] = 'B';
+                    }
+                    cont++;
+                }
             }
-
+            while(!comprueba);
         }
-
     }
 
 
     public static boolean compruebabarco(char[][] ta, int a, int b){
 
         boolean comprueba = false;
+        int contador = 0;
 
         do {
             a = fila();
@@ -80,13 +83,11 @@ public class Main {
                 //if(ta[a+i][b] < ta.length){
                     for(int x = 0; a < 3; a++){
                         if(ta[a+x][b] == '-'){
-                            comprueba = true;
-                            System.out.println("TRUE");
-                            ta[a+x][b] = 'A';
+                            contador++;
                         }
-                        else{
-                            System.out.println("FALSE");
-                        }
+                    }
+                    if(contador == 3){
+                        comprueba = true;
                     }
                 //}
             //}
@@ -113,6 +114,15 @@ public class Main {
             System.out.println("Introduce la columna");
 
             int columna = entrada.nextInt();
+
+            if(t[fila][columna] == '-'){
+                t[fila][columna] = 'A';
+                System.out.println("Has fallado! Tu disparo ha caido al agua.");
+            }
+            else if(t[fila][columna] != '-'){
+                t[fila][columna] = 'X';
+                System.out.println("Has acertado!");
+            }
 
             t[fila][columna] = '*';
 
@@ -172,20 +182,18 @@ public class Main {
         int fila = 0;
         int columna = 0;
 
-        /*lancha(taule);
+        lancha(taule);
 
         mostrar(taule);
 
         barco(taule);
 
-        mostrar(taule);*/
+        mostrar(taule);
 
         //mostrar(taule);
 
 
-        compruebabarco(taule,fila,columna);
 
-        mostrar(taule);
 
 
 
