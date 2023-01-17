@@ -1,9 +1,12 @@
 import java.util.*;
-public class Main {
 
+
+class Battleship {
     //MEJOR ORGANIZADO
 
-    public static int menu(){
+    public int menu(){
+        
+
         Scanner entrada = new Scanner(System.in);
 
         System.out.println("Niveles de dificultad.");
@@ -18,7 +21,7 @@ public class Main {
         return entrada.nextInt();
     }
 
-    public static char[][] tableroIA(){
+    public char[][] tableroIA(){
 
         char[][] tableroIA = new char[10][10];
 
@@ -30,7 +33,7 @@ public class Main {
         return tableroIA;
     }
 
-    public static void mostrar(char[][] tablero){
+    public void mostrar(char[][] tablero){
 
         char indicechar = 'A';
 
@@ -56,15 +59,15 @@ public class Main {
 
     }
 
-    public static int fila(){
+    public int fila(){
         return (int) (Math.random() * 10);
     }
 
-    public static int columna(){
+    public int columna(){
         return (int) (Math.random() * 10);
     }
 
-    public static boolean compruebalancha(char[][] tablero,int fila, int columna){
+    public boolean compruebalancha(char[][] tablero,int fila, int columna){
 
         boolean comprueba = true;
 
@@ -76,38 +79,40 @@ public class Main {
         return comprueba;
     }
 
-    public static void lancha(char[][] tablero){
+    public void lancha(char[][] tablero){
         int fila = 0;
         int columna = 0;
         int cont = 0;
         boolean comprueba = true;
 
-       do{
-           fila = fila();
-           columna = columna();
+        do{
+            fila = fila();
+            columna = columna();
 
-           comprueba = compruebalancha(tablero,fila,columna);
+            comprueba = compruebalancha(tablero,fila,columna);
 
-           if(comprueba){
+            if(comprueba){
 
-               tablero[fila][columna] = 'L';
+                tablero[fila][columna] = 'L';
 
-               cont++;
+                cont++;
 
-           }
+            }
 
-       }
-       while(cont < 5);
+        }
+        while(cont < 5);
 
     }
 
-
-
-    public static void main(String[] args) {
+    void main(){
         char[][] tablero = tableroIA();
 
         lancha(tablero);
         mostrar(tablero);
-
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        new Battleship().main();
     }
 }
